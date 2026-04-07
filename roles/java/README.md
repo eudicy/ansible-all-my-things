@@ -10,6 +10,9 @@ Install SDKMAN and Temurin LTS Java for all desktop users.
 - `curl` installed on the target host (present by default on Ubuntu 22.04+).
 - `ansible.builtin` modules only; no additional collections required.
 
+Note: The SDKMAN installer is fetched via `curl|bash` without integrity
+verification. See TD-010 in the technical debt register for the accepted risk.
+
 ## Role Variables
 
 | Variable | Default | Description |

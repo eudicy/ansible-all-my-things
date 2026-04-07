@@ -10,8 +10,8 @@
 - name: Check Temurin Java installation
   ansible.builtin.shell:
     cmd: >
-      bash -c 'source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
-      && java -version 2>&1 || echo "NOT_INSTALLED"'
+      source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
+      && java -version 2>&1 || echo "NOT_INSTALLED"
     executable: /bin/bash
   become_user: "{{ item }}"
   loop: "{{ desktop_user_names }}"
@@ -22,11 +22,12 @@
 - name: Install Java (Temurin LTS) via SDKMAN
   ansible.builtin.shell:
     cmd: >
-      bash -c 'source ~/.sdkman/bin/sdkman-init.sh
-      && sdk install java'
+      source ~/.sdkman/bin/sdkman-init.sh
+      && sdk install java
     executable: /bin/bash
   become_user: "{{ item.item }}"
   loop: "{{ java_version_check.results }}"
   when: '"Temurin" not in item.stdout'
   environment:
     SDKMAN_AUTO_ANSWER: "true"
+  changed_when: true

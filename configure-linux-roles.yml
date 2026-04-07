@@ -9,7 +9,7 @@
 
   roles:
     - claude_code
-    # FR-008: the three roles below carry the not-supported-on-vagrant-arm64
+    # FR-008: the four roles below carry the not-supported-on-vagrant-arm64
     # tag. If any of them is ever invoked via ansible.builtin.include_role,
     # the caller MUST pass apply: {tags: [not-supported-on-vagrant-arm64]}
     # to propagate the skip tag to inner tasks.

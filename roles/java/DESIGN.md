@@ -37,10 +37,22 @@ causing a redundant reinstall attempt on every run.
 The `sdk` command is a shell function, not a standalone executable. It is
 defined only after sourcing `~/.sdkman/bin/sdkman-init.sh`.
 `ansible.builtin.shell` defaults to `/bin/sh`, which does not support
-the `source` builtin. Specifying `executable: /bin/bash` ensures bash
-is used, and prefixing `source ~/.sdkman/bin/sdkman-init.sh &&` makes
-the `sdk` function available to the subsequent command. When
-`become_user` is set, `~` resolves to the target user's home directory.
+the `source` builtin. Specifying `executable: /bin/bash` is sufficient:
+Ansible passes the `cmd` string directly to that interpreter, so `source`
+(a bash builtin) works without an additional `bash -c '...'` wrapper.
+Prefixing `source ~/.sdkman/bin/sdkman-init.sh &&` makes the `sdk`
+function available to the subsequent command. When `become_user` is set,
+`~` resolves to the target user's home directory.
+
+### `failed_when: false` in the Check Task
+
+`failed_when: false` is a defensive guard for the edge case where
+`/bin/bash` is absent on the target host. In that scenario,
+`executable: /bin/bash` would cause the shell module to fail before the
+command body runs. The guard ensures the check task never aborts the
+play; the resulting empty `stdout` triggers the install task, which then
+fails with a clearer error. In practice, bash is always present on
+Ubuntu 22.04+.
 
 ### Loop Result Access via `item.item`
 
@@ -65,6 +77,22 @@ The `creates:` guard on the SDKMAN install task checks for
 script present but corrupted), the install task is skipped. A subsequent
 `sdk install java` call then fails visibly, making the corruption
 detectable without masking it.
+
+## SDKMAN Installer Integrity
+
+SDKMAN's only supported install path is `curl -s "https://get.sdkman.io" | bash`.
+The maintainers do not publish installer checksums, so there is no supported
+way to verify the script before execution.
+
+The `curl|bash` approach is accepted with the same rationale as TD-001
+(Claude Code installer) and TD-007 (Google signing key): HTTPS transport
+authenticates the server endpoint via TLS and prevents in-transit
+modification, which is the same trust model used by Homebrew, rustup, and
+the official Node.js installer. The blast radius is additionally limited to
+the desktop user's home directory — SDKMAN is installed entirely under
+`~/.sdkman/` and does not require root privileges.
+
+This risk is documented as TD-010 in the technical debt register.
 
 ## Code Conventions
 
