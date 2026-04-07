@@ -92,5 +92,7 @@ Architecture Decision Records are in
 [`docs/architecture/decisions/`](docs/architecture/decisions/).
 
 ## Active Technologies
-
 - YAML (Ansible 2.19+) + `community.general` collection
+
+## Recent Changes
+- 005-java-role: Added `java` role (SDKMAN + Temurin LTS) via `ansible.builtin.shell`
