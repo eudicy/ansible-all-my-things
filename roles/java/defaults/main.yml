@@ -1,0 +1,14 @@
+#SPDX-License-Identifier: MIT-0
+---
+# Security note: sdkman does not publish an installer checksum.
+# Installation uses the canonical `curl -s "https://get.sdkman.io" | bash`
+# method over HTTPS. Transit-level MITM is therefore prevented; a
+# server-side compromise at get.sdkman.io cannot be detected. This risk
+# is accepted because no checksum alternative exists upstream.
+#
+# sdkman version identifier for the Temurin JDK to install.
+# Available versions can be listed after sdkman is installed with:
+#   sdk list java
+# To update, run the command above and replace the value below with the
+# desired version identifier (format: <major>.<minor>.<patch>-tem).
+java_sdk_version: "21.0.10-tem"
