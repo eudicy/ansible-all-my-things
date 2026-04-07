@@ -409,3 +409,41 @@ provisioning tool.
 
 Open — accepted risk. Revisit when Google publishes SHA-256 checksums for
 cmdline-tools downloads.
+
+---
+
+## TD-010 — No integrity check on SDKMAN installer script
+
+- **Category:** Accepted Risk
+- **Severity:** High
+- **Affected file(s):** [roles/java/tasks/main.yml](../../roles/java/tasks/main.yml)
+- **Date added:** 2026-04-07
+
+### TD-010: Description
+
+The SDKMAN installer is fetched from `https://get.sdkman.io` and executed
+directly via `curl -s "https://get.sdkman.io" | bash` without any checksum
+or signature verification. A compromise of SDKMAN's CDN or a supply-chain
+attack on the installer endpoint could deliver a malicious script that runs
+under the target user's account. SDKMAN does not publish installer checksums,
+so there is no supported mitigation at the download step.
+
+### TD-010: Mitigation
+
+HTTPS transport provides the primary protection: the TLS connection to
+`get.sdkman.io` prevents in-transit modification and authenticates the
+server's identity. This is the same trust model accepted in TD-001 (Claude
+Code installer) and TD-007 (Google signing key).
+
+The blast radius is limited to the desktop user's home directory — SDKMAN
+is installed entirely under `~/.sdkman/` and does not require root
+privileges. A compromised installer script cannot directly obtain elevated
+system access.
+
+### TD-010: Ideas for solution
+
+None known — SDKMAN does not publish installer checksums.
+
+### TD-010: Status
+
+Open — accepted risk. Revisit if SDKMAN publishes installer checksums.
