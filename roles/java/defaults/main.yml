@@ -1,0 +1,4 @@
+#SPDX-License-Identifier: MIT-0
+---
+# No default variables required.
+# desktop_user_names must be provided by the calling playbook.

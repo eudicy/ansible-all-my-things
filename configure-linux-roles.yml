@@ -19,6 +19,8 @@
       tags: not-supported-on-vagrant-arm64
     - role: flutter
       tags: not-supported-on-vagrant-arm64
+    - role: java
+      tags: not-supported-on-vagrant-arm64
 
     # Optional roles - uncomment as needed
     #- cursor_ide
