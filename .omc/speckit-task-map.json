@@ -1,0 +1,19 @@
+{
+  "feature_dir": "specs/007-version-update-playbooks/",
+  "branch": "007-version-update-playbooks",
+  "tasks": [
+    {"task_id": "T001", "beads_id": "ansible-all-my-things-gbf", "title": "Create playbooks/update-versions/tasks/ dir and stub yml files"},
+    {"task_id": "T002", "beads_id": "ansible-all-my-things-xzd", "title": "Ensure docs/architecture/ exists"},
+    {"task_id": "T003", "beads_id": "ansible-all-my-things-mlt", "title": "Create fetch-flutter-version.yml task file"},
+    {"task_id": "T004", "beads_id": "ansible-all-my-things-h7v", "title": "Create fetch-github-release.yml parametrized task file"},
+    {"task_id": "T005", "beads_id": "ansible-all-my-things-cub", "title": "Create fetch-java-version.yml task file"},
+    {"task_id": "T006", "beads_id": "ansible-all-my-things-ac3", "title": "Create fetch-android-version.yml task file"},
+    {"task_id": "T007", "beads_id": "ansible-all-my-things-fue", "title": "Write query-versions.yml playbook"},
+    {"task_id": "T008", "beads_id": "ansible-all-my-things-5sc", "title": "Write perform-updates.yml playbook"},
+    {"task_id": "T009", "beads_id": "ansible-all-my-things-554", "title": "Create docs/architecture/version-update-playbooks.md"},
+    {"task_id": "T010", "beads_id": "ansible-all-my-things-cjd", "title": "Run review-documentation-here on version-update-playbooks.md"},
+    {"task_id": "T011", "beads_id": "ansible-all-my-things-i57", "title": "Run format-markdown on version-update-playbooks.md"},
+    {"task_id": "T012", "beads_id": "ansible-all-my-things-8wk", "title": "Close beads task 9kv (original tracking issue)"},
+    {"task_id": "T013", "beads_id": "ansible-all-my-things-6o4", "title": "Verify quickstart.md workflow end-to-end"}
+  ]
+}

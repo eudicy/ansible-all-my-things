@@ -9,6 +9,3 @@ Do not duplicate rules here. Update AGENTS.md or the constitution instead.
 ## Active Technologies
 - Ansible-core >= 2.19.0 + `ansible.builtin.uri`, `ansible.builtin.replace`, `ansible.builtin.set_fact`, `ansible.builtin.debug` (built-in) + `community.general.version_sort` (already in `requirements.yml`) (007-version-update-playbooks)
 - Local filesystem — role `defaults/main.yml` files modified in-place (007-version-update-playbooks)
-
-## Recent Changes
-- 007-version-update-playbooks: Added Ansible-core >= 2.19.0 + `ansible.builtin.uri`, `ansible.builtin.replace`, `ansible.builtin.set_fact`, `ansible.builtin.debug` (built-in) + `community.general.version_sort` (already in `requirements.yml`)
