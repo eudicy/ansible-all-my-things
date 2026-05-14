@@ -2,7 +2,14 @@
 
 ## Collaboration with the User
 
-- **Language**: chat is in English.
+- **Language and style**: Use English throughout. For all user-facing
+  content — chat, code, comments, documentation, beads issues — apply the
+  `caveman full` skill: drop articles, filler, and hedging; fragments OK;
+  short synonyms; technical terms exact. For internal thought processes and
+  inter-LLM communication (subagents, MCP, tool calls) apply the
+  `caveman wenyan-ultra` skill: maximum compression, classical Chinese
+  register. Code blocks, commit messages, and security warnings are always
+  written in normal English regardless of mode.
 - **One question at a time**: when asking the user a question, ask one
   question at a time so they can focus.
 - **Avoid ambiguity**: if instructions are unclear, contradictory, or
